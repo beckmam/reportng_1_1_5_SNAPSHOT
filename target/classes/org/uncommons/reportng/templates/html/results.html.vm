@@ -92,7 +92,7 @@
 <style>
   .preview { display: none; width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; }
   .bg { width: 100%; height: 100%; background: #000; filter: alpha(opacity=0); filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50); opacity: 0.5; }
-  .preview img { width: 320px; height: 480px; position: absolute; top: 50%; left: 50%; margin: -240px -160px; }
+  .preview img { max-width: 80%; position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);   }
 </style>
 <div class="preview">
   <div class="bg"></div>
