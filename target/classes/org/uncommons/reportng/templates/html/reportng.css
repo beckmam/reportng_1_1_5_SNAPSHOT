@@ -62,7 +62,7 @@ div.test                 {margin-top: 0.1em; clear: right; font-size: 1.3em;}
 
 .description             {border-bottom: 1px dotted #006699;}
 
-#meta                    {font-size: 1em; text-align: right; float: right;}
+#meta                    {font-size: 1em; text-align: left; float: right;}
 #systemInfo              {color: #666666;}
 
 /* Reporter log output (individual test ouput is style by "testOutput" above). */

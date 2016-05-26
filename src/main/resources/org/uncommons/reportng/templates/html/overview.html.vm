@@ -12,11 +12,12 @@
   #end
 </head>
 <body>
-<div id="meta">
-  $messages.getString("generatedBy")
-  $messages.getString("atTime") $meta.reportTime $messages.getString("onDate") $meta.reportDate
-  <br /><span id="systemInfo">$meta.user&nbsp;/&nbsp;$meta.javaInfo&nbsp;/&nbsp;$meta.platform</span>
-</div>
+<table id="meta">
+  <tr><td><b>$messages.getString("createTime")</b> $meta.reportDate $meta.reportTime</td></tr>
+  <tr><td><b>$messages.getString("computer")</b> $meta.user</td></tr>
+  <tr><td><b>$messages.getString("platform")</b> $meta.platform</td></tr>
+  <tr><td><b>$messages.getString("javainfo")</b> $meta.javaInfo</td></tr>
+</table>
 
 <h1>$meta.reportTitle</h1>
 #if (!$utils.allOutput.empty)
