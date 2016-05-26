@@ -15,6 +15,7 @@
 <body style="margin-top: 0;">
 
 <div id="sidebarHeader">
+  <a href="http://www.yqlfy.com" target="blank" title="点击访问蜂游互娱官网"><img src="http://www.yqlfy.com/images/logo2.png" width="30%" height="30%" ></a>
   <h2>$meta.reportTitle</h2>
   <p>
     <a href="overview.html" target="main">$messages.getString("overview")</a>
