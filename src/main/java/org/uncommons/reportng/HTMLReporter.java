@@ -297,7 +297,7 @@ public class HTMLReporter extends AbstractReporter
         copyClasspathResource(outputDirectory, "reportng.css", "reportng.css");
         copyClasspathResource(outputDirectory, "reportng.js", "reportng.js");
         copyClasspathResource(outputDirectory, "jquery.min.js", "jquery.min.js");
-        copyClasspathResource(outputDirectory, "beegame.bmp", "beegame.bmp");
+        copyStreamSE(outputDirectory, "beegame.png", "beegame.png");
         // If there is a custom stylesheet, copy that.
         File customStylesheet = META.getStylesheetPath();
 

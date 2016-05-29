@@ -17,13 +17,17 @@ package org.uncommons.reportng;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.nio.channels.FileChannel;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -157,7 +161,6 @@ public abstract class AbstractReporter implements IReporter
         }
     }
 
-
     /**
      * Helper method to copy the contents of a stream to a file.
      * @param outputDirectory The directory in which the new file is created.
@@ -199,6 +202,46 @@ public abstract class AbstractReporter implements IReporter
         }
     }
 
+    protected void copyStreamSE(File outputDirectory,
+    							String resourceName,
+					            String targetFileName) throws IOException
+    {
+        File targetFile = new File(outputDirectory, targetFileName);
+        String testPath = getClass().getResource("/"+resourceName).getFile();
+        System.out.println("testPath="+testPath);
+        File resourceFile = new File(testPath);
+        
+        //File resourceFile = new File(ClassLoader.getSystemClassLoader().getResource(resourcePath).getPath());
+        //InputStream input = getClass().getClassLoader().getResourceAsStream(resourcePath);
+        
+        InputStream input = new FileInputStream(resourceFile);
+        OutputStream output = new FileOutputStream(targetFile);
+        
+        
+        
+        byte[] img = new byte[1024];
+        while (input.read(img) != -1)
+        {
+            output.write(img, 0, img.length);
+        }
+        output.flush();
+        output.close();
+        input.close();
+        /* 
+        FileInputStream fis = new FileInputStream(resourceFile); 
+        BufferedInputStream bis = new BufferedInputStream(fis);
+        FileOutputStream fos = new FileOutputStream(targetFile);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        byte[] value = new byte[1024];
+        int len = -1;
+        while ((len = bis.read(value)) != -1) {
+        bos.write(value, 0, len);
+        }
+        bos.close();
+        bis.close();
+        */ 
+        
+    }
 
     /**
      * Deletes any empty directories under the output directory.  These
