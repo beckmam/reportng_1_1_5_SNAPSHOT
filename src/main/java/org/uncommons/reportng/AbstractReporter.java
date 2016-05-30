@@ -17,8 +17,7 @@ package org.uncommons.reportng;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.nio.channels.FileChannel;
 import java.io.FileFilter;
@@ -201,45 +200,34 @@ public abstract class AbstractReporter implements IReporter
             }
         }
     }
-
-    protected void copyFileStream(File outputDirectory,
+    /**
+     * add copyImageFile medthod to save the image of the report (By Beckmam Lee)
+     */
+    protected void copyImageFile(File outputDirectory,
     							String resourceName,
 					            String targetFileName) throws IOException
     {
+        String resourcePath = classpathPrefix+resourceName;
+        InputStream inStream = getClass().getClassLoader().getResourceAsStream(resourcePath);
         File targetFile = new File(outputDirectory, targetFileName);
-        String resourcePath = getClass().getResource(File.separator+resourceName).getFile();
-        System.out.println("resourcePath="+resourcePath);
-        File resourceFile = new File(resourcePath);
         
-        //File resourceFile = new File(ClassLoader.getSystemClassLoader().getResource(resourcePath).getPath());
-        //InputStream input = getClass().getClassLoader().getResourceAsStream(resourcePath);
-        
-        InputStream input = new FileInputStream(resourceFile);
-        OutputStream output = new FileOutputStream(targetFile);
-        
-        
-        
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream(); 
         byte[] img = new byte[1024];
-        while (input.read(img) != -1)
+        int n=0;
+        while ((n=inStream.read(img)) != -1)
         {
-            output.write(img, 0, img.length);
+        	outStream.write(img, 0, n);
         }
-        output.flush();
-        output.close();
-        input.close();
-        /* 
-        FileInputStream fis = new FileInputStream(resourceFile); 
-        BufferedInputStream bis = new BufferedInputStream(fis);
-        FileOutputStream fos = new FileOutputStream(targetFile);
-        BufferedOutputStream bos = new BufferedOutputStream(fos);
-        byte[] value = new byte[1024];
-        int len = -1;
-        while ((len = bis.read(value)) != -1) {
-        bos.write(value, 0, len);
-        }
-        bos.close();
-        bis.close();
-        */ 
+        
+        byte[] data = outStream.toByteArray(); 
+        FileOutputStream fileOutStream = new FileOutputStream(targetFile);
+        fileOutStream.write(data);
+        
+        
+        outStream.flush();
+        outStream.close();
+        inStream.close();
+        fileOutStream.close();
         
     }
 
