@@ -202,14 +202,14 @@ public abstract class AbstractReporter implements IReporter
         }
     }
 
-    protected void copyStreamSE(File outputDirectory,
+    protected void copyFileStream(File outputDirectory,
     							String resourceName,
 					            String targetFileName) throws IOException
     {
         File targetFile = new File(outputDirectory, targetFileName);
-        String testPath = getClass().getResource("/"+resourceName).getFile();
-        System.out.println("testPath="+testPath);
-        File resourceFile = new File(testPath);
+        String resourcePath = getClass().getResource(File.separator+resourceName).getFile();
+        System.out.println("resourcePath="+resourcePath);
+        File resourceFile = new File(resourcePath);
         
         //File resourceFile = new File(ClassLoader.getSystemClassLoader().getResource(resourcePath).getPath());
         //InputStream input = getClass().getClassLoader().getResourceAsStream(resourcePath);
