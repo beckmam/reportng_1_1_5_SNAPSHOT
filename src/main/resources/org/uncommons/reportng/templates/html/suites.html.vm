@@ -16,7 +16,7 @@
 
 <div id="sidebarHeader">
   <!--img src="http://www.yqlfy.com/images/logo2.png" width="30%" height="30%" -->
-  <a href="http://www.yqlfy.com" target="blank" title="µã»÷·ÃÎÊ·äÓÎ»¥Óé¹ÙÍø"><img src="beegame.png" width="30%" height="30%" ></a>
+  <a href="http://www.yqlfy.com" target="blank" title=$meta.webSiteTitle><img src="beegame.png" width="30%" height="30%" ></a>
   <h2>$meta.reportTitle</h2>
   <p>
     <a href="overview.html" target="main">$messages.getString("overview")</a>

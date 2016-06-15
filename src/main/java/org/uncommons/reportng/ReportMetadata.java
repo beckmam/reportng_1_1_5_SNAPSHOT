@@ -16,6 +16,7 @@
 package org.uncommons.reportng;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
@@ -195,4 +196,30 @@ public final class ReportMetadata
         }
         return Locale.getDefault();
     }
+
+    /**
+     * 添加鼠标移至蜂游互娱logo时的点击提示
+     */    
+    public String getWebSiteTitle() throws UnsupportedEncodingException {
+    	return changeCharset("点击访问蜂游互娱官网", "GBK");
+    	
+    }
+    
+    /**
+     * 字符串编码转换的实现方法
+     * @param str  待转换编码的字符串
+     * @param newCharset 目标编码
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    public String changeCharset(String str, String newCharset) throws UnsupportedEncodingException {
+    	if (str != null) {
+    		//用默认字符编码解码字符串。
+    		byte[] bs = str.getBytes();
+    		//用新的字符编码生成字符串
+    		return new String(bs, newCharset);
+    	}
+    	return null;
+    } 
+    
 }
