@@ -41,8 +41,8 @@ public final class ReportMetadata
     static final String LOCALE_KEY = PROPERTY_KEY_PREFIX + "locale";
     static final String VELOCITY_LOG_KEY = PROPERTY_KEY_PREFIX + "velocity-log";
 
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("EEEE dd MMMM yyyy");
-    private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm z");
+    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd E");
+    private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss z");
     
 
     /**
@@ -201,7 +201,7 @@ public final class ReportMetadata
      * 添加鼠标移至蜂游互娱logo时的点击提示
      */    
     public String getWebSiteTitle() throws UnsupportedEncodingException {
-    	return changeCharset("点击访问蜂游互娱官网", "GBK");
+    	return changeCharset("点击访问蜂游互娱官网-SNAPSHOT", "GBK");
     	
     }
     
